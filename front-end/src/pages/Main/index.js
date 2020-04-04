@@ -10,7 +10,7 @@ import {Container,
 
 export default function Main() {
 
-  const itens = ['Login', 'Cadastrar','Edital','Meus Artigos','Perfil','Logout',];
+  const itens = ['Login', 'Cadastrar','Edital','Meus Artigos','Perfil',];
 
   const eventos =[
     {
