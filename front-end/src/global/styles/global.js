@@ -13,7 +13,8 @@ html, body, #root{
   min-height:100%;
 }
 body{
-  background: #3377ff linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  background: #e6e6e6;
+  /* linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent); */
   -webkit-font-smoothing: antialiased !important;
 }
 `;

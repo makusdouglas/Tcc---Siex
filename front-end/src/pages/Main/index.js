@@ -1,16 +1,51 @@
 import React from 'react';
 // import logoSiex from '../../assets/siex.png';
+import {Link} from 'react-router-dom';
+import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 
-import {Container,
-  Divisor,
-  ActionButton,
-  Title,
+import {
   Card,
 } from './styles';
+import {
+  BigContainer,
+  MenuSup,
+  DivUserUcess,
+  Container, 
+  Side, 
+  Divisor,
+  DivLink, 
+  Title, 
+} from '../../global/styles/styles';
 
 export default function Main() {
 
-  const itens = ['Login', 'Cadastrar','Edital','Meus Artigos','Perfil',];
+  
+  const itens = [
+    {
+      name:'Início',
+      logo:'',
+    },
+    {
+      name:'Cadastrar',
+      logo:'',
+    },
+    {
+      name:'Edital',
+      logo:'',
+    },
+    {
+      name:'Meus Artigos',
+      logo:'',
+    },
+    {
+      name:'Perfil',
+      logo: '',
+    },
+    {
+      name:'Logout',
+      logo: '',
+    },
+  ];
 
   const eventos =[
     {
@@ -82,29 +117,46 @@ export default function Main() {
     },
   ];
   return (
+    <BigContainer>
+   <MenuSup>
+      <Title>
+          {/* <img src={logoSiex} alt="Logosiex"/> */}
+            Siex
+      </Title>
+      
+      <DivUserUcess>
+        <DivLink>
+          <FaSignInAlt size={16}  />
+          <Link>Entrar</Link>
+        </DivLink>
+        <DivLink>
+          <FaUserPlus size={16} />
+          <Link>Cadastar-se</Link>
+        </DivLink>
+      </DivUserUcess>
+      
+
+  </MenuSup>
   <Container>
-    <aside>
-        <Title>
-        {/* <img src={logoSiex} alt="Logosiex"/> */}
-          <span>Siex</span>
-        </Title>
+     
+    <Side>
           <Divisor >
           {itens.map(item =>{
             return(
-            <ActionButton>{item}</ActionButton>
+            <Link>
+             {item.name}
+            </Link>
             )
           })}
           </Divisor>
-          
-        
-        
-        
-      </aside>
+    </Side> 
+      
       <main>
         {eventos.map(evento=>(
-          <><Card>
+          <>
+          <Card>
           <h1>{evento.nome}</h1>
-          <p>{evento.descricao}</p>
+          <p id="desc">{evento.descricao}</p>
           <div className="showsParams" >
             <p>
               Números de participantes confirmados: 
@@ -119,9 +171,9 @@ export default function Main() {
           </div>
           <div className="folder">  
 
-            <div className= "alingnColun">
+            <div className= "alignColunm">
               <p id="textInfo">PERIODO DE INSCRIÇÃO: </p>
-              <div className="folder data">
+              <div className=" data">
                 <p>De {evento.data_inscricao_inicio}</p>
                 
                 <p>á {evento.data_inscricao_fim}</p>
@@ -129,9 +181,9 @@ export default function Main() {
             </div>
 
 
-            <div>
+            <div className= "alignColunm">
               <p id="textInfoSec">DURAÇÂO DO EVENTO: </p>
-              <div className="folder data2" >
+              <div className=" data2" >
                 <p>De {evento.data_ev_inicio}</p>
                 <p>à {evento.data_ev_fim}</p>
               </div>
@@ -146,5 +198,6 @@ export default function Main() {
       </main>
     
   </Container>
+  </BigContainer>
   );
 }
