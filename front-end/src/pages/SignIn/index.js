@@ -24,7 +24,9 @@ import {
 } from '../../global/styles/styles';
 
 // DEVELOPMENT
-export default function Profile() {
+// import {Buttons} from '../../global/components/buttonsList';
+
+export default function SignIn() {
 
   const eventos =[
     {
@@ -124,7 +126,7 @@ export default function Profile() {
   <Container>
      
     <Side>
-        <Divisor >
+    <Divisor >
             <Link to="/" select >
               <FaHome />
               Inicio 

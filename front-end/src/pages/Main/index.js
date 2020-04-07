@@ -1,7 +1,13 @@
 import React from 'react';
 // import logoSiex from '../../assets/siex.png';
 import {Link} from 'react-router-dom';
-import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
+import { 
+  FaSignInAlt, 
+  FaUserPlus, 
+  FaHome,
+  FaFileAlt, 
+  FaUserCircle 
+} from 'react-icons/fa';
 
 import {
   Card,
@@ -9,7 +15,7 @@ import {
 import {
   BigContainer,
   MenuSup,
-  DivUserUcess,
+  DivUserAcess,
   Container, 
   Side, 
   Divisor,
@@ -17,40 +23,13 @@ import {
   Title, 
 } from '../../global/styles/styles';
 
+// DEVELOPMENT
 export default function Main() {
-
-  
-  const itens = [
-    {
-      name:'Início',
-      logo:'',
-    },
-    {
-      name:'Cadastrar',
-      logo:'',
-    },
-    {
-      name:'Edital',
-      logo:'',
-    },
-    {
-      name:'Meus Artigos',
-      logo:'',
-    },
-    {
-      name:'Perfil',
-      logo: '',
-    },
-    {
-      name:'Logout',
-      logo: '',
-    },
-  ];
 
   const eventos =[
     {
       id: 1,
-      nome: "Simpósio de pesquisa, e extenção 2020",
+      nome: "Simpósio de pesquisa e extenção 2020",
       descricao: "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing",
       n_inscritos: 20,
       valor_inscricao: 4.99,
@@ -61,7 +40,7 @@ export default function Main() {
 
     },{
       id: 2,
-      nome: "Simpósio de pesquisa, e extenção 2020",
+      nome: "Simpósio de pesquisa e extenção 2020",
       descricao: "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing",
       n_inscritos: 20,
       valor_inscricao: 4.99,
@@ -121,34 +100,47 @@ export default function Main() {
    <MenuSup>
       <Title>
           {/* <img src={logoSiex} alt="Logosiex"/> */}
-            Siex
+            Siepex
       </Title>
       
-      <DivUserUcess>
-        <DivLink>
-          <FaSignInAlt size={16}  />
-          <Link>Entrar</Link>
+      <DivUserAcess>
+        <DivLink>          
+          <Link to="/login" >
+            <FaSignInAlt size={16}  />
+            Entrar
+          </Link>
         </DivLink>
         <DivLink>
-          <FaUserPlus size={16} />
-          <Link>Cadastar-se</Link>
+          
+          <Link to="/signin" >
+            <FaUserPlus size={16} />
+            Cadastar-se
+            </Link>
         </DivLink>
-      </DivUserUcess>
+      </DivUserAcess>
       
 
   </MenuSup>
   <Container>
      
     <Side>
-          <Divisor >
-          {itens.map(item =>{
-            return(
-            <Link>
-             {item.name}
+        <Divisor >
+            <Link to="/" select >
+              <FaHome />
+              Inicio 
             </Link>
-            )
-          })}
-          </Divisor>
+
+            <Link to="/" >
+              <FaFileAlt />
+              Artigos 
+            </Link>
+            
+            <Link to="/profile" >
+              <FaUserCircle />
+              Perfil 
+            </Link>
+            
+        </Divisor>
     </Side> 
       
       <main>
@@ -157,18 +149,16 @@ export default function Main() {
           <Card>
           <h1>{evento.nome}</h1>
           <p id="desc">{evento.descricao}</p>
-          <div className="showsParams" >
-            <p>
-              Números de participantes confirmados: 
-            </p>
-            <h6>
-              {evento.n_inscritos}
-            </h6>
-          </div>
+          
           <div className="showsParams" >
             <p>Valor da inscrição: </p>
           <h6>R$: {evento.valor_inscricao}</h6>
           </div>
+          <div className="showsParams" >
+            <p>Inscritos: </p>
+            <h6> {evento.n_inscritos} </h6>
+          </div>
+
           <div className="folder">  
 
             <div className= "alignColunm">
@@ -182,7 +172,7 @@ export default function Main() {
 
 
             <div className= "alignColunm">
-              <p id="textInfoSec">DURAÇÂO DO EVENTO: </p>
+              <p id="textInfoSec">DURAÇÃO DO EVENTO: </p>
               <div className=" data2" >
                 <p>De {evento.data_ev_inicio}</p>
                 <p>à {evento.data_ev_fim}</p>
