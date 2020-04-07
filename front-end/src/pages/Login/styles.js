@@ -1,5 +1,6 @@
 
 import styled from 'styled-components';
+import {Container, Side } from '../../global/styles/styles';
 
 // CSS de ELEMENTOS DE MAIN
 export const Card = styled.div`
@@ -134,7 +135,71 @@ h1{
   cursor: pointer;
   
 }
+`;
 
+export const EditedContainer = styled(Container)`
+margin-top: 0px;   
+    flex-direction: column;
+    align-items: center;
+  
+
+  main {
+    width: 100%;  
+    margin-left: 0px;
+    margin-left: 0px;
+    margin-top: 190px;
+    border-radius: 20px;
+  }
+
+`;
+export const AsideEdited = styled(Side)`
+  position: fixed;
+    margin-top: 100px;
+    border-radius: 0px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    display: flex;
+    flex: 0;   
+    width: 50%;
+    height: 50px;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-around; */
+
+    
+
+    div{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    margin: 10px 10px;
+    padding: 10px 5px;
+    
+    
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    :hover{
+      
+      width: auto;
+    }
+    a{
+      display: flex;
+      flex: 0;
+      margin: 0px;
+      padding: 2px 5px;
+          min-width: auto;
+          width: auto;
+          
+        }
+
+    }
 
 `;
 
+
+export const InputDiv = styled.div`
+
+`;

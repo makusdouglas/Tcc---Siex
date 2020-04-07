@@ -146,46 +146,9 @@ export default function SignIn() {
     </Side> 
       
       <main>
-        {eventos.map(evento=>(
-          <>
-          <Card>
-          <h1>{evento.nome}</h1>
-          <p id="desc">{evento.descricao}</p>
+        <Card>
           
-          <div className="showsParams" >
-            <p>Valor da inscrição: </p>
-          <h6>R$: {evento.valor_inscricao}</h6>
-          </div>
-          <div className="showsParams" >
-            <p>Inscritos: </p>
-            <h6> {evento.n_inscritos} </h6>
-          </div>
-
-          <div className="folder">  
-
-            <div className= "alignColunm">
-              <p id="textInfo">PERIODO DE INSCRIÇÃO: </p>
-              <div className=" data">
-                <p>De {evento.data_inscricao_inicio}</p>
-                
-                <p>á {evento.data_inscricao_fim}</p>
-              </div>
-            </div>
-
-
-            <div className= "alignColunm">
-              <p id="textInfoSec">DURAÇÃO DO EVENTO: </p>
-              <div className=" data2" >
-                <p>De {evento.data_ev_inicio}</p>
-                <p>à {evento.data_ev_fim}</p>
-              </div>
-            </div>
-          <button id="buttonVerMais" >Ver mais ...</button>
-          </div>
         </Card>
-          </>
-        ))}
-        
         
       </main>
     

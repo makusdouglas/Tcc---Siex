@@ -90,6 +90,7 @@ export const DivLink = styled.div`
 export const Container = styled.div`
   margin-top: 100px;
   display: flex;
+  flex: 1;
   max-width: 1000px;
   
   
@@ -107,12 +108,16 @@ export const Container = styled.div`
     flex-direction: column;
   } 
 
-  @media (max-width: 1000px){   
-    margin-top: 0; 
+  @media (max-width: 1000px){ 
+    margin-top: 0px;   
     flex-direction: column;
+    align-items: center;
+  
+
   main {
-    width: 100%;  
-    margin-left: 0;
+    width: auto;  
+    margin-left: 0px;
+    margin-left: 0px;
     margin-top: 190px;
     border-radius: 20px;
   }  
@@ -135,7 +140,9 @@ export const Side = styled.aside`
     box-shadow : 0 0 14px 0 rgba(0, 0, 0, 0.2);
     padding: 5px 5px;
     background: #fff;
+
     @media (max-width: 1000px){
+      
     position: fixed;
     margin-top: 100px;
     border-radius: 0px;
@@ -204,8 +211,8 @@ export const Divisor = styled.div`
     font-size: 18;
     
     
+    }
   }
-}
 
   a{    
     align-items: center;
