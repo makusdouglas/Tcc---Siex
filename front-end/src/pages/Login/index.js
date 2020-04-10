@@ -1,5 +1,5 @@
-import React from 'react';
-// import logoSiex from '../../assets/siex.png';
+import React, {useState} from 'react';
+import api from '../../services/api';
 import {Link} from 'react-router-dom';
 import { 
   FaSignInAlt, 
@@ -28,8 +28,63 @@ import {
 // DEVELOPMENT
 // import {Buttons} from '../../global/components/buttonsList';
 
+
 export default function Login() {
 
+
+
+  const [id, setId] = useState('');
+  const [senha, setSenha] = useState('');
+  function handleResponse(response){
+    if(response.status === 200) {
+
+      if (window.confirm(`Bem vindo ${response.data.nome}`)){
+        navigator.navigate('/')
+      }
+    }
+    if(response.status === 400) {
+
+      return alert(`Usuário não encontrado, sugerimos ir para tela de cadastro. ( Status: ${response.status})`);
+    }
+  }
+
+
+  
+  async function checkUserExists(id){
+    let response= {
+      data: {},
+      status : 0,
+    }
+    try {
+      response = await api.post('/login', {
+        id,
+      });
+      
+    } catch (error) {
+      response.status = 400;
+      console.log(error);      
+    }      
+  console.log(response);
+  return response;
+    
+  }
+
+  
+  async function handleSubmit(e ){
+
+    e.preventDefault();
+    const data= {
+      id,
+      senha
+    }
+
+    const response = await checkUserExists(data.id);
+
+    handleResponse(response);    
+  }
+
+
+  
   return (
     <BigContainer>
    <MenuSup>
@@ -60,7 +115,7 @@ export default function Login() {
      
     <AsideEdited>
     <Divisor >
-            <Link to="/" select >
+            <Link to="/" >
               <FaHome />
               Inicio 
             </Link>
@@ -80,30 +135,34 @@ export default function Login() {
       
       <main>
         
-          <Card>
+          <Card onSubmit={handleSubmit} >
             <h1>Login</h1>
 
             <InputDiv>
             <p>Nº de matrícula *:</p>
             <input 
-              type="text"
+              name="id"
+              type="number"
+              required
               placeholder="Digite aqui"
+              onChange={ e => setId(e.target.value)}
             />
             </InputDiv>
 
             <InputDiv>
             <p>Senha *:</p>
             <input
+              name="password"
               type="password"
+              required
               placeholder="Insira sua senha"
+              onChange={ e => setSenha(e.target.value)}
+              autoComplete="none"
             />
             </InputDiv>
 
-          <button 
-          type="submit" 
-          onClick={()=>{}}
-          >ENVIAR </button>
-
+          <button type="submit" >ENVIARrrr </button>
+          
           
         </Card>
           
@@ -115,3 +174,5 @@ export default function Login() {
   </BigContainer>
   );
 }
+
+

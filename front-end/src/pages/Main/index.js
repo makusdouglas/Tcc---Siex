@@ -125,7 +125,7 @@ export default function Main() {
      
     <Side>
         <Divisor >
-            <Link to="/" select >
+            <Link to="/" >
               <FaHome />
               Inicio 
             </Link>
@@ -145,8 +145,8 @@ export default function Main() {
       
       <main>
         {eventos.map(evento=>(
-          <>
-          <Card>
+          
+          <Card key={evento.id} >
           <h1>{evento.nome}</h1>
           <p id="desc">{evento.descricao}</p>
           
@@ -181,7 +181,7 @@ export default function Main() {
           <button id="buttonVerMais" >Ver mais ...</button>
           </div>
         </Card>
-          </>
+          
         ))}
         
         

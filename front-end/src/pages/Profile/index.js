@@ -125,7 +125,7 @@ export default function Profile() {
      
     <Side>
         <Divisor >
-            <Link to="/" select >
+            <Link to="/" >
               <FaHome />
               Inicio 
             </Link>
