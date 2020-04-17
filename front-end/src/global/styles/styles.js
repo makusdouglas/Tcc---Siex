@@ -61,19 +61,28 @@ export const DivUserAcess = styled.div`
 `;
 export const DivLink = styled.div`
   a{
+  border: 0;
   text-decoration: none;
   margin-left: 10px;
-  font-size: 22px;  
+  font-size: 18px;  
   color: #0057ff;      
-  align-items: flex-end;
-  padding: 5px 5px;
+  align-items: baseline;
+  padding: 5px 8px;
   border-radius: 25px;
   margin-right: 5px;
-  border: 1px solid #fff;
+  
   background: #fff;
   box-shadow : 0 0 19px 0 rgba(0, 0, 0, 0.4);
+  :hover{
+    color: #fff;
+    background: #3377ff;
+    svg{
+      color: #fff;
+    }
+  }
   }
   svg{
+    font-size: 16px;
     margin-right: 5px;
     color: #111;
   }

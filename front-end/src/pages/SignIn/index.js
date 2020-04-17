@@ -41,14 +41,14 @@ export default function SignIn() {
         <DivLink>          
           <Link to="/login" >
             <FaSignInAlt size={16}  />
-            Entrar
+            ENTRAR
           </Link>
         </DivLink>
         <DivLink>
           
           <Link to="/signin" >
             <FaUserPlus size={16} />
-            Cadastar-se
+            CADASTRAR-SE
             </Link>
         </DivLink>
       </DivUserAcess>
