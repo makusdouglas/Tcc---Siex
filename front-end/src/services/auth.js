@@ -1,17 +1,10 @@
-import api from './api';
+import expiryData from './expiryData';
 
 export function isAutenticated() {
-  const token = localStorage.getItem('token');
-  console.log(token);
+  const token = expiryData.getWithExpiry('token');
+  console.log('TOKEN AUTH', token);
   if (!token) {
     return false;
   }
   return true;
-  // try {
-  //   const response = api.get('/checktoken', (Headers.authorization = token));
-  // } catch (error) {
-  //   console.log(error.response);
-  //   return false;
-  // }
-  // return true;
 }

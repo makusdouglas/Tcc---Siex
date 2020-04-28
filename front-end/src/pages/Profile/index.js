@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Component } from 'react';
 // import logoSiex from '../../assets/siex.png';
 import { Link } from 'react-router-dom';
-import api from '../../services/api';
+import expiryData from '../../services/expiryData';
 import {
   FaSignInAlt,
   FaUserPlus,
@@ -10,208 +10,124 @@ import {
   FaUserCircle,
 } from 'react-icons/fa';
 
-import { Card } from './styles';
+import {
+  DivUserAcessModifyed,
+  DivLinkModifyed,
+  ProfileDataView,
+  EditedContainer,
+  AsideEdited,
+} from './styles';
 import {
   BigContainer,
   MenuSup,
-  DivUserAcess,
   Container,
   Side,
   Divisor,
-  DivLink,
   Title,
 } from '../../global/styles/styles';
 
 // DEVELOPMENT
-export default function Profile() {
-  const [token, setToken] = useState('');
-  const [erro, setErro] = useState('');
-  const [userData, setUserData] = useState('');
+export default class Profile extends Component {
+  state = {
+    token: {},
+    userData: {},
+  };
+  componentDidMount() {
+    const getTkn = expiryData.getWithExpiry('token');
+    const getData = expiryData.getWithExpiry('userData');
+    if (getTkn.jwt_token || getData) {
+      this.setState({
+        token: getTkn,
+        userData: getData,
+      });
+    }
+  }
+  valueshandler = () => {
+    const { userData } = this.state;
 
-  useEffect(() => {
-    setToken({ token: localStorage.getItem('token') });
-  }, [token]);
-
-  useEffect(() => {
-    if (!token) setErro({ erro: true });
-  }, [erro, token]);
-
-  useEffect(() => {
-    setUserData({ userData: JSON.parse(localStorage('userData')) });
-  }, [userData]);
+    if (userData.nome) {
+      const nome = userData.nome.split(' ');
+      return {
+        id: userData.id,
+        nome,
+        notSplitedName: userData.nome,
+        email: userData.email,
+      };
+    }
+    return null;
+  };
+  // const [token, setToken] = useState({});
+  // const [userData, setUserData] = useState({});
 
   // useEffect(() => {
-  //   async function verify() {
-  //     let response;
-  //     try {
-  //       response = await api.get(
-  //         '/checktoken',
-  //         (Headers.authorization = token)
-  //       );
-  //     } catch (error) {
-  //       console.log(error.response);
-  //     }
-  //   }
-  //   verify();
-  // }, [token]);
+  //   const tkn = expiryData.getWithExpiry('token');
+  //   setToken({ token: tkn });
+  //   const userDt = expiryData.getWithExpiry('userData');
+  //   setUserData({ userData: userDt });
+  // }, []);
 
-  const eventos = [
-    {
-      id: 1,
-      nome: 'Simpósio de pesquisa e extenção 2020',
-      descricao:
-        "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing",
-      n_inscritos: 20,
-      valor_inscricao: 4.99,
-      data_ev_inicio: '2020-04-10',
-      data_ev_fim: '2020-04-15',
-      data_inscricao_inicio: '2020-03-20',
-      data_inscricao_fim: '2020-04-10',
-    },
-    {
-      id: 2,
-      nome: 'Simpósio de pesquisa e extenção 2020',
-      descricao:
-        "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing",
-      n_inscritos: 20,
-      valor_inscricao: 4.99,
-      data_ev_inicio: '2020-04-10',
-      data_ev_fim: '2020-04-15',
-      data_inscricao_inicio: '2020-03-20',
-      data_inscricao_fim: '2020-04-10',
-    },
-    {
-      id: 3,
-      nome: 'Simpósio de pesquisa, e extenção 2020',
-      descricao:
-        "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing",
-      n_inscritos: 20,
-      valor_inscricao: 4.99,
-      data_ev_inicio: '2020-04-10',
-      data_ev_fim: '2020-04-15',
-      data_inscricao_inicio: '2020-03-20',
-      data_inscricao_fim: '2020-04-10',
-    },
-    {
-      id: 4,
-      nome: 'Simpósio de pesquisa, e extenção 2020',
-      descricao:
-        "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing",
-      n_inscritos: 20,
-      valor_inscricao: 4.99,
-      data_ev_inicio: '2020-04-10',
-      data_ev_fim: '2020-04-15',
-      data_inscricao_inicio: '2020-03-20',
-      data_inscricao_fim: '2020-04-10',
-    },
-    {
-      id: 5,
-      nome: 'Simpósio de pesquisa, e extenção 2020',
-      descricao:
-        "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing",
-      n_inscritos: 20,
-      valor_inscricao: 4.99,
-      data_ev_inicio: '2020-04-10',
-      data_ev_fim: '2020-04-15',
-      data_inscricao_inicio: '2020-03-20',
-      data_inscricao_fim: '2020-04-10',
-    },
-    {
-      id: 6,
-      nome: 'Simpósio de pesquisa, e extenção 2020',
-      descricao:
-        "What is Lorem Ipsum? Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when anunknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing",
-      n_inscritos: 20,
-      valor_inscricao: 4.99,
-      data_ev_inicio: '2020-04-10',
-      data_ev_fim: '2020-04-15',
-      data_inscricao_inicio: '2020-03-20',
-      data_inscricao_fim: '2020-04-10',
-    },
-  ];
-  return (
-    <BigContainer>
-      <MenuSup>
-        <Title>
-          {/* <img src={logoSiex} alt="Logosiex"/> */}
-          Siepex
-        </Title>
+  // async function getData() {}
+  // const { nome, email, id } = userData;
+  // console.log(token);
+  // console.log(userData);
+  // console.log(nome, email, id);
 
-        <DivUserAcess>
-          <DivLink>
-            <Link to="/login">
-              <FaSignInAlt size={16} />
-              ENTRAR
-            </Link>
-          </DivLink>
-          <DivLink>
-            <Link to="/signin">
-              <FaUserPlus size={16} />
-              CADASTRAR-SE
-            </Link>
-          </DivLink>
-        </DivUserAcess>
-      </MenuSup>
-      <Container>
-        <Side>
-          <Divisor>
-            <Link to="/">
-              <FaHome />
-              Inicio
-            </Link>
+  render() {
+    const dados = this.valueshandler();
+    // while(dados === null)
+    return (
+      <BigContainer>
+        <MenuSup>
+          <Title>
+            {/* <img src={logoSiex} alt="Logosiex"/> */}
+            Siepex
+          </Title>
 
-            <Link to="/">
-              <FaFileAlt />
-              Artigos
-            </Link>
+          <DivUserAcessModifyed>
+            <DivLinkModifyed>
+              <p>
+                {dados
+                  ? dados.nome[0] + ' ' + dados.nome[1]
+                  : 'Session Expired'}
+              </p>
+            </DivLinkModifyed>
+            <DivLinkModifyed>
+              <button to="/login">
+                <FaSignInAlt size={16} />
+                SAIR
+              </button>
+            </DivLinkModifyed>
+          </DivUserAcessModifyed>
+        </MenuSup>
+        <EditedContainer>
+          <AsideEdited>
+            <Divisor>
+              <Link to="/">
+                <FaHome />
+                Inicio
+              </Link>
 
-            <Link to="/profile">
-              <FaUserCircle />
-              Perfil
-            </Link>
-          </Divisor>
-        </Side>
+              <Link to="/">
+                <FaFileAlt />
+                Artigos
+              </Link>
 
-        <main>
-          {eventos.map((evento) => (
-            <>
-              <Card>
-                <h1>{evento.nome}</h1>
-                <p id="desc">{evento.descricao}</p>
+              <Link to="/profile">
+                <FaUserCircle />
+                Perfil
+              </Link>
+            </Divisor>
+          </AsideEdited>
 
-                <div className="showsParams">
-                  <p>Valor da inscrição: </p>
-                  <h6>R$: {evento.valor_inscricao}</h6>
-                </div>
-                <div className="showsParams">
-                  <p>Inscritos: </p>
-                  <h6> {evento.n_inscritos} </h6>
-                </div>
-
-                <div className="folder">
-                  <div className="alignColunm">
-                    <p id="textInfo">PERIODO DE INSCRIÇÃO: </p>
-                    <div className=" data">
-                      <p>De {evento.data_inscricao_inicio}</p>
-
-                      <p>á {evento.data_inscricao_fim}</p>
-                    </div>
-                  </div>
-
-                  <div className="alignColunm">
-                    <p id="textInfoSec">DURAÇÃO DO EVENTO: </p>
-                    <div className=" data2">
-                      <p>De {evento.data_ev_inicio}</p>
-                      <p>à {evento.data_ev_fim}</p>
-                    </div>
-                  </div>
-                  <button id="buttonVerMais">Ver mais ...</button>
-                </div>
-              </Card>
-            </>
-          ))}
-        </main>
-      </Container>
-    </BigContainer>
-  );
+          <main>
+            <ProfileDataView>
+              <h1>{`Bem vindo, ${
+                dados ? dados.nome[0] + ' ' + dados.nome[1] : ''
+              }`}</h1>
+            </ProfileDataView>
+          </main>
+        </EditedContainer>
+      </BigContainer>
+    );
+  }
 }

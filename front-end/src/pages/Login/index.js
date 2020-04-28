@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../../services/api';
 import { Link, useHistory } from 'react-router-dom';
+import expiryData from '../../services/expiryData';
 import {
   FaSignInAlt,
   FaUserPlus,
@@ -22,7 +23,7 @@ import {
 // DEVELOPMENT
 // import {Buttons} from '../../global/components/buttonsList';
 
-export default function Login() {
+export default function Login({ props }) {
   let history = useHistory();
   const [id, setId] = useState('');
   const [senha, setSenha] = useState('');
@@ -30,12 +31,12 @@ export default function Login() {
   function handleResponse(response) {
     if (response.status === 200) {
       if (window.confirm(`Bem vindo ${response.data.user.nome}`)) {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('userData', JSON.stringify(response.data.user));
-
-        // console.log(localStorage.getItem("token"));
-        // console.log(JSON.parse(localStorage.getItem("userData")));
-        history.push('/');
+        const token = {
+          jwt_token: response.data.token,
+        };
+        expiryData.setWithExpiry('token', token, 3600000); // 1 hr em miliseg
+        expiryData.setWithExpiry('userData', response.data.user, 3600000);
+        history.push({ pathname: '/profile' });
       }
     }
     if (response.status > 200) {
@@ -145,7 +146,7 @@ export default function Login() {
               />
             </InputDiv>
 
-            <button type="submit">ENVIARrrr </button>
+            <button type="submit">LOGAR </button>
           </Card>
         </main>
       </EditedContainer>

@@ -8,22 +8,20 @@ import SignIn from './pages/SignIn';
 import notFound from './pages/notFound';
 import { isAutenticated } from './services/auth';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const result = isAutenticated();
-  return (
-    <Route
-      {...rest}
-      render={(props) => {
-        if (result) return <Component {...props} />;
-        return (
-          <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
-          />
-        );
-      }}
-    />
-  );
-};
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      isAutenticated() ? (
+        <Component {...props} key={props.location.key} />
+      ) : (
+        <Redirect
+          to={{ pathname: '/login', state: { from: props.location } }}
+        />
+      )
+    }
+  />
+);
 
 export default function Routes() {
   return (
