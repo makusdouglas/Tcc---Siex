@@ -7,8 +7,10 @@ padding: 10px;
 margin:10px;
 background-color: #fff;
 border-radius: 10px;
-box-shadow : 0 0 19px 0 rgba(0, 0, 0, 0.2);h1{
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+border: 1px solid #ccc;
+/* box-shadow : 0 0 19px 0 rgba(0, 0, 0, 0.2); */
+h1{
+  font-family: 'Comic Neue', Helvetica, sans-serif;
   font-size: 26px;
   color: #111111;
   border-bottom: 1px solid #444;
@@ -27,7 +29,10 @@ box-shadow : 0 0 19px 0 rgba(0, 0, 0, 0.2);h1{
   flex: 1;
   flex-direction: row;
   justify-content: left;
-  align-items: baseline;
+  align-items: center;
+
+        
+  
   
   
   p{
@@ -40,6 +45,14 @@ box-shadow : 0 0 19px 0 rgba(0, 0, 0, 0.2);h1{
     font-family: Arial, Helvetica, sans-serif;
     font-size:18px;
     color: #0057ff;
+  }
+  @media (max-width: 560px){
+    p{
+      font-size: 14px;
+    }
+    h6{
+      font-size: 16px;
+    }
   }
   
   
@@ -55,7 +68,20 @@ box-shadow : 0 0 19px 0 rgba(0, 0, 0, 0.2);h1{
       padding: 10px;
       /* background: #6495ED; */
       
+      @media (max-width: 560px){
+        flex-direction: column;
+        .alignColunm{
+          margin-bottom: 8px;
+        }
 
+      }
+
+}
+.alignColunm{
+  padding: 5px 0px;
+  /* border: 1px solid #ccc ; */
+  border-radius: 4px;
+  
 }
 
 #textInfo{ 
@@ -109,11 +135,6 @@ box-shadow : 0 0 19px 0 rgba(0, 0, 0, 0.2);h1{
   
 }
 
-.alignColunm{
-  padding: 5px 0px;
-  /* border: 1px solid #ccc ; */
-  border-radius: 4px;
-  
-}
+
 `;
 

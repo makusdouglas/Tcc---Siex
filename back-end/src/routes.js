@@ -1,13 +1,21 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import UserController from './Controllers/UserController';
 import SessionController from './Controllers/SessionController';
+
+import authMiddleware from './middlewares/auth';
 const router = Router();
 
 //listar users = DEVELOPMENT
 router.get('/users', UserController.index);
-//Login
-router.post('/login', SessionController.create);
 
 router.post('/users/create', UserController.create);
+//Login
+router.post('/login', SessionController.create);
+router.get('/checktoken', SessionController.index);
+
+//delete user
+router.use(authMiddleware);
+
+router.delete('/users', UserController.delete);
 
 export default router;
